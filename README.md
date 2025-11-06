@@ -18,29 +18,46 @@ When I said **“Infra team makes this folder structure and writes the setup doc
 
 ```
 discretelab/
-├── backend/
-│   ├── app/           # All backend code will go here
-│   ├── tests/         # Unit tests for algorithms and APIs
-│   ├── requirements.txt
-│   └── Dockerfile     # How to run the backend in Docker
+├── backend/                      <-- Backend code & Dockerfile
+│   ├── app/                      <-- FastAPI app code
+│   │   ├── main.py               <-- Entry point of the backend
+│   │   ├── api/                  <-- API route definitions
+│   │   │   └── routes_graphs.py  <-- Graph endpoints (BFS, Dijkstra stub)
+│   │   ├── algorithms/           <-- Actual algorithm implementations
+│   │   │   ├── bfs.py
+│   │   │   ├── dijkstra.py
+│   │   │   └── rsa.py
+│   │   ├── models/               <-- Pydantic models for request/response
+│   │   │   └── graph.py
+│   │   └── core/                 <-- Config + constants
+│   │       └── config.py
+│   ├── tests/                     <-- Unit tests for backend code
+│   │   └── test_health.py
+│   ├── requirements.txt           <-- Python dependencies
+│   └── Dockerfile                 <-- Instructions to build backend container
 │
-├── frontend/
-│   ├── src/
-│   ├── package.json
-│   └── Dockerfile     # How to run the frontend in Docker
+├── frontend/                      <-- Frontend code & Dockerfile
+│   ├── src/                       <-- React/Vite app source
+│   │   ├── main.tsx               <-- Entry point for React
+│   │   ├── App.tsx
+│   │   └── components/            <-- Reusable UI components
+│   ├── package.json               <-- Node dependencies
+│   └── Dockerfile                 <-- Instructions to build frontend container
 │
-├── docs/
-│   ├── README.md      # Instructions for the team
-│   └── learning/      # Math & CS guides for the project
+├── docs/                          <-- Project documentation
+│   ├── README.md                  <-- How to run project, conventions
+│   └── learning/                  <-- Math & CS guides
+│       ├── bfs.md
+│       ├── dijkstra.md
+│       ├── nfa.md
+│       ├── dfa.md
+│       ├── pascal.md
+│       └── rsa.md
 │
-├── docker-compose.yml # Brings frontend + backend together
-└── .gitignore
-```
+├── docker-compose.yml             <-- Orchestrates frontend + backend
+└── .gitignore                     <-- Ignore unnecessary files for Git
 
-* This gives **everyone a clear place to put their work** without confusion.
-* Infra team ensures that **folders and empty files exist**, so backend and frontend can start coding immediately.
 
----
 
 ### 2️⃣ Setup Docs
 
