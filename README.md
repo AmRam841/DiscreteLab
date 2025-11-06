@@ -79,3 +79,131 @@ Without this, frontend/backend teams might spend hours just figuring out paths, 
 ---
 
 If you want, I can make a **full diagram of the directories + files + Docker connections** — a visual cheat sheet for your team. It will make everything instantly clear. Do you want me to do that?
+
+
+
+
+
+✅ How to run
+
+Go to project root:
+
+docker-compose up --build
+
+
+Open browser:
+
+http://localhost:8000/health
+
+
+You should see {"status":"ok"}.
+
+
+
+
+
+
+
+
+
+
+
+3️⃣ How to Run Everything
+
+Make sure you’re at the project root (where docker-compose.yml is).
+
+Run:
+
+docker-compose up --build
+
+
+Open browser:
+
+Frontend: http://localhost:5173
+
+Backend: http://localhost:8000/health
+
+Now both backend and frontend are running. You can edit code in your local files, and changes appear immediately.
+
+4️⃣ How Your Team Can Work
+
+Everyone uses the same command: docker-compose up --build. No one installs Python, Node, or dependencies manually.
+
+Backend team → writes algorithms in backend/app/algorithms and endpoints in backend/app/api.
+
+Frontend team → writes UI in frontend/src. Fetches backend APIs like http://backend:8000/api/graph/bfs (inside Docker network) or localhost:8000 (from browser).
+
+You (manager) → coordinate tasks, make sure folder structure is followed, verify docker-compose works before merging any PR.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                 ┌───────────────────────┐
+                 │      Your Computer    │
+                 │ (host machine / dev) │
+                 └─────────┬─────────────┘
+                           │
+           ┌───────────────┴────────────────┐
+           │ docker-compose up --build      │
+           │                                │
+           ▼                                ▼
+  ┌─────────────────────┐          ┌─────────────────────┐
+  │   Backend Container │          │   Frontend Container│
+  │  (Python + FastAPI) │          │   (Node + React)    │
+  ├─────────────────────┤          ├─────────────────────┤
+  │ WORKDIR: /app       │          │ WORKDIR: /app       │
+  │ Copy code:          │          │ Copy code:          │
+  │ ./backend/app → /app│          │ ./frontend/src → /app/src │
+  │ Install dependencies│          │ npm install         │
+  │ Run: uvicorn main:app│         │ Run: npm run dev    │
+  │ Expose port 8000    │          │ Expose port 5173    │
+  └─────────┬───────────┘          └─────────┬───────────┘
+            │                                  │
+            │                                  │
+            │ Local code mapping (Volumes)     │
+            │                                  │
+            ▼                                  ▼
+  ┌─────────────────────┐          ┌─────────────────────┐
+  │ Local backend code   │          │ Local frontend code │
+  │ backend/app/         │          │ frontend/src/       │
+  └─────────────────────┘          └─────────────────────┘
+            │                                  │
+            │ API calls                        │
+            ▼                                  │
+  Frontend fetches backend: `http://localhost:8000/api/...`  
+
+
+
+
+
+
+
+
+
+
+
+
+  📌 Team Responsibilities (9 devs + 1 manager)
+Team	People	Folder / Files	Responsibilities
+Backend Algorithms	3	backend/app/algorithms	Implement graph, logic, automata, combinatorics, RSA algorithms
+Backend API & Tests	3	backend/app/api, backend/app/tests	Create endpoints for algorithms, unit tests, snapshot structure
+Frontend / UI	3	frontend/src/components	Build React UI, algorithm visualizations, charts, user interactions
+Manager (You)	1	All folders	Ensure Docker works, coordinate tasks, verify folder structure, review PRs, handle bugs & merging
+
+
