@@ -1,0 +1,14 @@
+{
+  "name": "discretelab-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for DiscreteLab project",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
