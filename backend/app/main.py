@@ -3,6 +3,7 @@ from logic.TruthTable import Truth_table
 from Cryptography_algos.rsa import Rsa_Main
 from rich.console import Console
 from Cryptography_algos import AES
+import questionary
 
 console = Console()
 app = typer.Typer(help="DiscreteLab — Discrete Mathematics Demonstration Tool")
@@ -31,7 +32,7 @@ def interactive():
             case "3":
                 return True    
             case "4":
-                AES.main()
+                AES.main(input_file1 , output_file1 , password)
             case _:
                 console.print("[red] invalid , you gotta give me somthing mannnn[/red]")
             

@@ -4,11 +4,20 @@ from Crypto.Cipher import AES
 from Crypto.Util.Padding import pad,unpad
 import os
 import base64
-import easygui
+import questionary
+
+def get_path_questionary() -> str:
+    # questionary.path provides path entry with completion
+    selected_path = questionary.path("Select file:").ask()
+    return selected_path  # None if cancelled
 # for getting the password for en/decription 
+
 def get_pass():
     password = input("give me the pass")
     return password
+
+
+
 
 def encryption(intput_file,output_file,password):
     salt = get_random_bytes(16)
@@ -69,20 +78,45 @@ def decryption(input_file,output_file,password):
     except ValueError as e :
          print(f"Decryption err {e}")
          raise SystemExit(1)
-     
+
+
+
+
+# Writing the name of the file into a var 
+#Instead of directly using input this is a more gracefull way
+def Write_file_name(prompt= "Name Of the Output File pls : "):
+    File_name_Output = input(prompt).strip()
+    return File_name_Output
+    
+    
+        
 def main():
-    choice = input("enter 'e' for encryption or 'd ' for decryption: ").lower()
+    choice = input("enter 'e' for encryption or 'd ' for decryption: ").strip().lower()
     password = get_pass()
     if choice == 'e' :
         
-        input_file1 = "amir.bin"
-        output_file1 = "isAmirkoni.txt"
+        input_file1 = get_path_questionary()
+        output_file1 = Write_file_name()
         encryption(input_file1 , output_file1 , password)
         print(f"File {input_file1} has been encrypted to {output_file1}")
       # Bug: os.remove("Test.txt")
-    elif choice =='d' : 
-        input_file1 = easygui.fileopenbox()
-        output_file1 = "theTest.text"
+    elif choice =='d' :
+        
+        #orginal idea was to wrap it in str() so it alwaysreturns a string , but this is bad practice , what if it returns None ? then the output would be a file name "None" 
+        #instead we fo this  : 1- check if string 2- check if none 
+        # and for the output if the user clicks a defualt name should be given  
+        input_file1 = get_path_questionary()
+        if not input_file1:
+            print("No input Detected")
+        output_file1 = Write_file_name()
+        if not output_file1:
+            output_file1
+            if choice == 'e':
+                output_file1 = input_file1 + ".enc"
+            else:
+                output_file1 = input_file1 + ".dec"
+            
+        
         decryption(input_file1 , output_file1 , password)
         print(f"File{input_file1} has beend decrypted to {output_file1 }")
         #no need for deleting this / if yo9-قفu wanted to have new key i have to make another function that gets decrypt the file and encrypt it with a diffrent key

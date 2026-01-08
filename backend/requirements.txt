@@ -3,3 +3,4 @@ typer
 Crypto
 pycryptodome
 cryptography
+questionary
