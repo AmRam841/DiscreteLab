@@ -4,19 +4,29 @@ from itertools import product
 from rich.live import Live
 from rich.console import Console
 from rich.table import Table
-def Truth_table(variables , formula):
+
+
+
+# WHAT ABOUT XOR!
+
+
+
+# def Truth_table(variables , formula):
+def Truth_table():  
+    #cant use Strip() bc it only removes the start and end white spaces 
+    vars = input("Please Enter Variables(Example : q,r) : ").replace(" ","").split(",")
+    formula = input("Give me the fromula using python logic (Exapmle : q or r) : ")    
     table = Table(title="Truth Table")
-    for var in variables:
+    for var in vars:
         table.add_column(var)
 
     table.add_column("result")
-
     #print(" | " .join(variables) + " | Result" )# prints the lines between vars
     #print("-" *( 4 * len(variables) + 9) )# prints the line beneeth the vars and result 
 # we have to have 2 arguments with this one . first one the number of state a variable can be in , in this case 2
 # secoond repeat means how many times it is going to make groups and try all the combinations 
-    for values in product([True , False] , repeat=len(variables)):
-        eval_env = dict(zip(variables , values))
+    for values in product([True , False] , repeat=len(vars)):
+        eval_env = dict(zip(vars , values))
         
         try:
             result = eval(formula , {} , eval_env )
@@ -35,11 +45,9 @@ def Truth_table(variables , formula):
     console = Console()
     console.print(table)
 
-    
+
 if __name__ == "__main__" : # for making this useable for anyone who wants to import , the name is equal to main when its directly executed 
-     vars = input("enter varrs : ").replace(" ","").split(",")
-     formula = input("Give me the fromula using python logic : ")
-     Truth_table(vars,formula)
+     Truth_table()
 
 #satisfiability check
 #def is_satisfiable(variables, formula):
@@ -53,27 +61,3 @@ if __name__ == "__main__" : # for making this useable for anyone who wants to im
      #       print(f"Error evaluating formula: {e}")
     #        return False
    # return False
-
-     
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

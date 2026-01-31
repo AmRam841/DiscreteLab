@@ -5,7 +5,7 @@ from Crypto.Util.Padding import pad, unpad
 import os
 import questionary
 
-
+# this is what ai recommends , i have not checked this 
 def get_pass() -> str:
     return input("give me the pass: ").strip()
 
