@@ -43,37 +43,41 @@ def interactive_Menu():
             case "2":
                 run_rsa_demo()
             case "3":
-                # choice = Graph.ChooseAlgoMenu.ChooseAlgo()
-                # num_nodes = random.randint(6, 10)
-                # G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
-                # print(f"\nGenerated graph with {num_nodes} nodes.")
-                # print(f"Node weights: {[G.nodes[i]['weight'] for i in G.nodes()]}")
-                # print("Nodes:", list(G.nodes()))
-
-                # start = int(input("Choose start node: "))
-                # end = int(input("Choose end node: "))
-
-                # length, path = Graph.ChooseAlgoMenu.run_algo(G, choice, start, end)
-                
-                # print(f"Shortest path: {path}")
-                # print(f"Total distance: {length}")
-                
+             while True:
                 choice = Graph.ChooseAlgoMenu.ChooseAlgo()
                 num_nodes = random.randint(6, 10)
                 G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
-
                 print(f"\nGenerated graph with {num_nodes} nodes.")
+                print(f"Node weights: {[G.nodes[i]['weight'] for i in G.nodes()]}")
                 print("Nodes:", list(G.nodes()))
 
                 start = int(input("Choose start node: "))
                 end = int(input("Choose end node: "))
 
                 length, path = Graph.ChooseAlgoMenu.run_algo(G, choice, start, end)
+                
+                print(f"Shortest path: {path}")
+                print(f"Total distance: {length}")
+                again  = input("run another graph? (y/n)").lower().strip()
+                if again == "n":
+                    break
+                #------------------------------------------
+                # choice = Graph.ChooseAlgoMenu.ChooseAlgo()
+                # num_nodes = random.randint(6, 10)
+                # G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
 
-                if path is not None:
-                    print(f"Shortest path: {path}")
-                    print(f"Total distance: {length}")
+                # print(f"\nGenerated graph with {num_nodes} nodes.")
+                # print("Nodes:", list(G.nodes()))
 
+                # start = int(input("Choose start node: "))
+                # end = int(input("Choose end node: "))
+
+                # length, path = Graph.ChooseAlgoMenu.run_algo(G, choice, start, end)
+
+                # if path is not None:
+                #     print(f"Shortest path: {path}")
+                #     print(f"Total distance: {length}")
+                
                 
 
             case "4":
@@ -95,26 +99,6 @@ class Returnto_main_menu:
                 
         
             
-            
-                
-    
 
-        
-
-# @app.command()
-# def truth_table(expr: str):
-#     """
-#     Generate and display the truth table for a logical expression.
-#     """
-#     Truth_table(Logic  , formula)
-
-# @app.command()
-# def rsa():
-#     """
-#     Demonstrate RSA using discrete mathematics concepts.
-#     """
-#     run_rsa_demo()
-# 
-# 
 if __name__ == "__main__":
  app()

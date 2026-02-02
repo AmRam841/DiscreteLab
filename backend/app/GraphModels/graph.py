@@ -26,6 +26,8 @@ class Graph:
                             width = "100%",
                             select_menu = True,
                             filter_menu = True,
+                            #make it look better !
+                            
             )
             nodes = list(set([*sample.person1,*sample.person2]))
             edges = sample.values.tolist()
@@ -50,9 +52,9 @@ class Graph:
            
             
             
-        
+        #make random unweighted graph for BFS
         def BFS():
-            
+            # the weighted 
             
         
             return True
@@ -68,7 +70,7 @@ class Graph:
             
             return True
         
-        
+        # make the logic better  and study it 
         def Floyd_Warshall():
             
             
@@ -91,43 +93,43 @@ class Graph:
             return choice
     
         def run_algo(G , choice , start , end):
-            # match choice:
-            #     case "1":
-            #         length , path = nx.single_source_dijkstra(G,start , end)
-            #     case "2":
-            #         length , path = nx.single_source_bellman_ford(G,start , end)
-            #     case "3":
-            #         length , path = nx.shortest_path(G,start , end)
-            #         length = len(path) - 1
-            #     case "4":
-            #         all_pairs = dict(nx.floyd_warshall(G))
-            #         length = all_pairs[start][end]
-            #         path = nx.reconstruct_path(start, end, all_pairs) 
-            #     case _ :
-            #         print("invalid choice")
-            #         return None , None
+            match choice:
+                case "1":
+                    length , path = nx.single_source_dijkstra(G,start , end)
+                case "2":
+                    length , path = nx.single_source_bellman_ford(G,start , end)
+                case "3":
+                    length , path = nx.shortest_path(G,start , end)
+                    length = len(path) - 1
+                case "4":
+                    all_pairs = dict(nx.floyd_warshall(G))
+                    length = all_pairs[start][end]
+                    path = nx.reconstruct_path(start, end, all_pairs) 
+                case _ :
+                    print("invalid choice")
+                    return None , None
             
-        # return length , path
+            return length , path
             
-        
-            try:
-                match choice:
-                    case "1":
-                        return nx.single_source_dijkstra(G, start, end)
-                    case "2":
-                        return nx.single_source_bellman_ford(G, start, end)
-                    case "3":
-                        path = nx.shortest_path(G, start, end)
-                        return len(path) - 1, path
-                    case "4":
-                        dist, pred = nx.floyd_warshall_predecessor_and_distance(G)
-                        return dist[start][end], nx.reconstruct_path(start, end, pred)
-                    case _:
-                        print("Invalid choice")
-                        return None, None
-            except nx.NetworkXNoPath:
-                print("No path exists.")
-                return None, None
+        #----------------------------------------
+            # try:
+            #     match choice:
+            #         case "1":
+            #             return nx.single_source_dijkstra(G, start, end)
+            #         case "2":
+            #             return nx.single_source_bellman_ford(G, start, end)
+            #         case "3":
+            #             path = nx.shortest_path(G, start, end)
+            #             return len(path) - 1, path
+            #         case "4":
+            #             dist, pred = nx.floyd_warshall_predecessor_and_distance(G)
+            #             return dist[start][end], nx.reconstruct_path(start, end, pred)
+            #         case _:
+            #             print("Invalid choice")
+            #             return None, None
+            # except nx.NetworkXNoPath:
+            #     print("No path exists.")
+            #     return None, None
     
-    # says that 
+    # says that i should create pure functions like for dijkstra 
 
