@@ -79,7 +79,7 @@ class Graph:
         
         def johnson():
             
-            
+                    
             
             return True
     class ChooseAlgoMenu:

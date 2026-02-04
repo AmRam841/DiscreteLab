@@ -3,6 +3,7 @@ from logic.TruthTable import Truth_table
 #from Cryptography_algos.rsa import Rsa_Main
 from rich.console import Console
 from Cryptography_algos import AES
+# from Cryptography_algos.rsa import run_rsa_attack_lab
 import questionary
 from GraphModels.graph import Graph
 import random
@@ -34,16 +35,39 @@ def interactive_Menu():
         global choice_main_menu_var;
         choice_main_menu_var = typer.prompt("Select an option")
         match choice_main_menu_var:
+           
+           
+           
+           
+           
             case "1":
                 # logic_var  = typer.prompt("Enter Your Logic vals ")
                 # logic_exprstion = typer.prompt("Enter logical expresion")
                 # Truth_table(logic_var , logic_exprstion)
                 Truth_table()
                 Returnto_main_menu.Return_to_main_menu()
+           
+           
+           
+           
+           
             case "2":
-                run_rsa_demo()
+                 return True
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
             case "3":
+           
+           
              while True:
+          
                 choice = Graph.ChooseAlgoMenu.ChooseAlgo()
                 num_nodes = random.randint(6, 10)
                 G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
