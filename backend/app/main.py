@@ -3,6 +3,7 @@ from logic.TruthTable import Truth_table
 #from Cryptography_algos.rsa import Rsa_Main
 from rich.console import Console
 from Cryptography_algos import AES
+from Cryptography_algos import rsa
 # from Cryptography_algos.rsa import run_rsa_attack_lab
 import questionary
 from GraphModels.graph import Graph
@@ -52,7 +53,35 @@ def interactive_Menu():
            
            
             case "2":
-                 return True
+                randomly_chosen =input("do you want to Generate weak  p , q , e , d  Randomly ? (y/n)").lower().strip()
+                #rsa.RGV() if randomly_chosen == "y"  else rsa.Chosen_WEAK_value_by_user()
+                gen = rsa.Number_Generation()
+                attack = rsa.Rsa_Attacks()
+                p, q, n, phi, e, public_key, private_key = gen.RGV().values() if randomly_chosen == "y" else gen.Chosen_WEAK_value_by_user()
+                
+                
+                
+                attack_choice = input("Do You want to Go in Attack mode : (y/n)").strip().lower()
+                match attack_choice:
+                    case "y":
+                        console.print("\n [bold cyan] Attack mode ENABLED [/bold cyan]")
+                        console.print("\n [bold] 1) Small Primes Attack [/bold]")
+                        console.print("\n [bold] 2) Fermat Factorazation Attack [/bold]")
+                        console.print("\n [bold] 3) Low Exponent Attack  [/bold]")
+                        attack_oprion_Choice = input("\n Give Me the Number You choose : ").strip()
+                        match attack_oprion_Choice:
+                            case '1':
+                                attack.Small_Prime_Attack(n , e)
+                            case "2":
+                                attack.Fermats_Factorization()
+                    
+                
+                
+                Returnto_main_menu.Return_to_main_menu()
+                    
+                    
+                
+                
            
            
            
@@ -115,11 +144,11 @@ class Returnto_main_menu:
                  
     def Return_to_main_menu():
         
-            returns  = input("Do you want to go back to the Main menu ?(y/n) ").strip().lower()
-            if returns == "y" :
-               interactive_Menu()
-            #elif returns == "n":
-            # how can i just grab the choice_main_menu_var and urn it again 
+           # returns  = input("Do you want to go back to the Main menu ?(y/n) ").strip().lower()
+            returns = input("\nDo you want to go back to the Main menu? (y/n): ").strip().lower()
+            if returns == "n":
+                print("Goodbye!")
+                sys.exit()
                 
         
             
