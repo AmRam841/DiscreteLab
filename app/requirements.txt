@@ -1,0 +1,7 @@
+typer  
+questionary 
+sympy 
+pycryptodome  
+networkx 
+pandas   
+pyvis
