@@ -73,7 +73,9 @@ def interactive_Menu():
                             case '1':
                                 attack.Small_Prime_Attack(n , e)
                             case "2":
-                                attack.Fermats_Factorization()
+                                attack.Fermats_Factorization(n , e)
+                            case "3":
+                                attack.LowExponent_Attack()
                     
                 
                 

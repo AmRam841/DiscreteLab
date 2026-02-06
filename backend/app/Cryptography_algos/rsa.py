@@ -4,6 +4,8 @@ import base64
 import sympy
 import math
 import sys
+from rich.console import Console
+from sympy.ntheory.primetest import is_square
 
 # #publickey module -
 # from Crypto.PublicKey import RSA
@@ -22,7 +24,7 @@ import sys
 #  #Drive the public key from the private key 
 #  public_key  = key.public_key()
  
- 
+console = Console()
  
  
  
@@ -514,6 +516,7 @@ class Number_Generation:
 
         while True:
             e = random.randint(2 , phi -1)
+            
             if math.gcd(e, phi) == 1:
                 break
             
@@ -523,16 +526,17 @@ class Number_Generation:
         arr_ch = []
         #there is a function called pow(x,y,z) x to the power of y % Z
         d_canidates_ch = list(range(1 , phi))
-        print(f"d = canidates are : {d_canidates_ch}")
+        console.print(f"[bold] d = canidates are : {d_canidates_ch}[/bold]")
         for d in d_canidates_ch : 
             if (e *d) % phi == 1:
                 arr_ch.append(d)
-                print("d =", d)
+                console.print(f"[bold] d ={d} [/bold]")
                 private_key_random = (d, n)
 
 
     
-        print(f" \n \n \n this is p :{p} \n this is q :{q}\n this is the n : {n} \n this is the phi : {phi} \n \n \n ")
+        console.print(f" [bold] \n \n \n this is p :{p} \n this is q :{q}\n this is the n : {n} \n this is the phi : {phi} \n this is the e : {e}  \n \n \n [/bold]")
+        
 
 
         return {"p":p ,
@@ -617,7 +621,7 @@ class Rsa_Attacks:
     
         
         phi = (p-1) * (q-1)
-        print(f"your phi is {phi}")
+        console.print(f"\n [bold] Your phi is {phi}  [/bold]")
     
         d = pow(e , -1 , phi)
         
@@ -640,20 +644,40 @@ class Rsa_Attacks:
         
         return True
     
-    def Fermats_Factorization(n:int):
+    def Fermats_Factorization(self ,n:int , e : int ):
         """_summary_
         
         Fermat’s Factorization :(Close Primes)
         This is a classic vulnerability where the user picks p and q that are very close to each other in value.
         The Math: Fermat showed that if p and q are close, $n$ can be represented as a difference of squares: $n = a^2 - b^2$.
         We can find a and b much faster than standard factoring.
-        
-        
-        
-        
         """
-        return True
-        #using pow 
+        #using pow
         
-        # = pow(a ,2 - pow(b ,2))
-    
+        
+        #n = pow(a ,2 - pow(b ,2))  this wont Work 
+        # lets build a logic :
+        # for i in range(1 , math.isqrt(n)): cant do this , this goes trough the numbers befor the sqrt of n 
+        # its 3 Am man my brain is  mush
+        
+        
+        start = math.isqrt(n)
+        if start*start<n:
+            start +=1
+        for i in range( start , n):
+            a = i 
+            b2 = a*a - n
+            b = math.isqrt(b2)
+            
+            # checking if this b is a perfect square
+            if  b*b == b2 :
+                console.print(f"[bold] Factors Found [/bold]")
+                break
+        p = a - b 
+        q = a + b
+        phi = (p-1) * (q-1)
+        d = pow(e , -1 , phi)
+        console.print(f"\n [bold] Your phi is {phi}  [/bold]")
+        console.print(f"\n [bold] Your Public Key is ({n} , {e} ) \n Your Private Key is ({n} , {d})  [/bold]")
+        
+        
