@@ -1,11 +1,3 @@
-import random
-import base64
-# this is explecily wrong and cuased issues regerding pow belongs to which one so we do the following to fix it
-import sympy
-import math
-import sys
-from rich.console import Console
-from sympy.ntheory.primetest import is_square
 
 # #publickey module -
 # from Crypto.PublicKey import RSA
@@ -24,7 +16,6 @@ from sympy.ntheory.primetest import is_square
 #  #Drive the public key from the private key 
 #  public_key  = key.public_key()
  
-console = Console()
  
  
  
@@ -492,6 +483,18 @@ console = Console()
 
 # for now i will focus on the Attacking rsa , it is said by computerphile that if you have public key which is just (e , n) you cant use n to find out p and q therfore you cant find the d and you cant use the euler formula 
 # but when p and q are small you factor the n and find the p and q ۱ . if the  two numbers are close to each other we can attack it .
+import random
+import base64
+# this is explecily wrong and cuased issues regerding pow belongs to which one so we do the following to fix it
+import sympy
+import math
+import sys
+from rich.console import Console
+from sympy.ntheory.primetest import is_square
+
+
+
+console = Console()
 
 
 class Number_Generation:
@@ -640,10 +643,29 @@ class Rsa_Attacks:
     
     
     
-    def LowExponent_Attack():
+    def LowExponent_Attack(self, n, c, e):
+        """_summary_
+        Works if m^e < n
+        """
         
-        return True
-    
+        if pow(c, e) >= n:
+            console.print("Attack Failed - c^e >= n")
+            return
+
+        m = round(c ** (1/e))
+        if pow(m, e) == c:
+            console.print(f"Recovered Message m = {m}")
+            return m
+        else:
+            console.print(f"Failed - m^e != c")
+            return None
+
+        
+        
+        
+        
+        
+        
     def Fermats_Factorization(self ,n:int , e : int ):
         """_summary_
         

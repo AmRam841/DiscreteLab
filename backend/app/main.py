@@ -75,7 +75,13 @@ def interactive_Menu():
                             case "2":
                                 attack.Fermats_Factorization(n , e)
                             case "3":
-                                attack.LowExponent_Attack()
+                                e_attack = 3              
+                                m = 2                     
+                                n = 6241
+                                #c = pow(m , e)
+                                c= 8
+                                console.print(f" the numbers are fixed due to the nature of this attack the fixed are the following :e : {e} , m : {m} , n = {n} , c = {c}")
+                                attack.LowExponent_Attack(n, c, e_attack)
                     
                 
                 
