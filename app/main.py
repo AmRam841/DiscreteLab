@@ -9,21 +9,13 @@ import questionary
 from GraphModels.graph import Graph
 import random
 import sys
-# Source - https://stackoverflow.com/a/2084628
-# Posted by poke, modified by community. See post 'Timeline' for change history
-# Retrieved 2026-02-06, License - CC BY-SA 3.0
-
 import os
 
 
 
 #class Main_Menu:
-
 console = Console()
 app = typer.Typer(help="DiscreteLab — Discrete Mathematics Demonstration Tool")
-
-
-
 
 @app.command()
 def interactive_Menu():
@@ -99,20 +91,7 @@ def interactive_Menu():
                 
                 
                 Returnto_main_menu.Return_to_main_menu()
-                    
-                    
                 
-                
-           
-           
-           
-           
-           
-           
-           
-           
-           
-           
             case "3":
            
            
@@ -145,14 +124,12 @@ def interactive_Menu():
                 if again == "n":
                     break
                 
-                
-                
-
             case "4":
                 AES.main()
                 Returnto_main_menu.Return_to_main_menu()
             case _:
                 console.print("[red] invalid , you gotta give me somthing mannnn[/red]")
+                
                 
 class Returnto_main_menu:  
     
