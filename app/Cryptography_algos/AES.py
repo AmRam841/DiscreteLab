@@ -5,8 +5,10 @@ from Crypto.Util.Padding import pad,unpad
 import os
 import base64
 import questionary
+from rich import Console
 #from ..MainMenu.main import interactive_Menu
 
+console = Console()
 
 def get_path_questionary() -> str:
     # questionary.path provides path entry with completion
@@ -15,7 +17,7 @@ def get_path_questionary() -> str:
 # for getting the password for en/decription 
 
 def get_pass():
-    password = input("give me the pass")
+    password = input("[bold]Give me the Pass : [/bold]")
     return password
 
 
@@ -44,7 +46,7 @@ def encryption(intput_file,output_file,password):
                 
                 
     except FileNotFoundError:
-        print("err file not found ")
+        console.print("err file not found ")
 def decryption(input_file,output_file,password):
     try:
         #read the enc file and read the first 32byte : 16 for salt , 16 for the IV
@@ -76,9 +78,9 @@ def decryption(input_file,output_file,password):
                         
                         
     except FileNotFoundError:
-        print("File not found ! ")
+        console.print("[bold red]File not found ![/bold red] ")
     except ValueError as e :
-         print(f"Decryption err {e}")
+         console.print(f"[bold red]Decryption err {e} [/bold red]")
          raise SystemExit(1)
 
 
@@ -100,7 +102,7 @@ def main():
         input_file1 = get_path_questionary()
         output_file1 = Write_file_name()
         encryption(input_file1 , output_file1 , password)
-        print(f"File {input_file1} has been encrypted to {output_file1}")
+        console.print(f"File {input_file1} has been encrypted to {output_file1}")
       # Bug: os.remove("Test.txt")
     elif choice =='d' :
         
@@ -109,7 +111,7 @@ def main():
         # and for the output if the user clicks a defualt name should be given  
         input_file1 = get_path_questionary()
         if not input_file1:
-            print("No input Detected")
+            console.print("No input Detected")
         output_file1 = Write_file_name()
         if not output_file1:
             output_file1
@@ -120,12 +122,12 @@ def main():
             
         
         decryption(input_file1 , output_file1 , password)
-        print(f"File{input_file1} has beend decrypted to {output_file1 }")
+        console.print(f"File{input_file1} has beend decrypted to {output_file1 }")
         
         
 
     else:
-        print("invalid try again !!")
+        console.print("invalid try again !!")
         SystemExit(1)
     
     

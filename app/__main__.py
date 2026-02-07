@@ -46,6 +46,7 @@ def interactive_Menu():
                 # logic_exprstion = typer.prompt("Enter logical expresion")
                 # Truth_table(logic_var , logic_exprstion)
                 Truth_table()
+                console.print("[bold] for q -> r statement  : Do this not q or r [/bold]")
                 Returnto_main_menu.Return_to_main_menu()
            
            
@@ -123,6 +124,9 @@ def interactive_Menu():
                         again  = input("run another graph? (y/n)").lower().strip()
                         if again == "n":
                             break
+                        Returnto_main_menu.Return_to_main_menu(
+                            
+                        )
                         
             case "4":
                 AES.main()
