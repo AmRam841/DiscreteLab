@@ -25,7 +25,7 @@ jobs:
 
       - name: Build executable
         run: |
-          pyinstaller --onefile --collect-data pyvis app/main.py
+          pyinstaller --onefile --collect-data pyvis app/__main__.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
