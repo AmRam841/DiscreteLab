@@ -6,6 +6,8 @@ import json
 import heapq
 import sys
 import random
+from Cryptography_algos.AES import get_path_questionary
+from Cryptography_algos.AES import Write_file_name
 class Graph:
     
     class GraphVisualizer:
@@ -13,7 +15,8 @@ class Graph:
         def Visualizer():
             # get qustionary to retive the named Dataset 
             #data Loading 
-            data = pd.read_csv("facebook_combined.txt" , sep=" " , header=None)
+            dataset_file = get_path_questionary()
+            data = pd.read_csv(dataset_file , sep=" " , header=None)
             data.columns =  ["person1" , "person2"]
             sample = data.sample(1000 , random_state=1)
             sample.head(10)
@@ -35,7 +38,9 @@ class Graph:
             net.show_buttons(filter_="physics")
             net.add_nodes(nodes)
             net.add_edges(edges)
-            net.show("graph_with_menu.html")
+            Name_file = Write_file_name()
+            
+            net.show(Name_file)
         
         
     class ShortestPath:

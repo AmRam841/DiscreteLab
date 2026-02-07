@@ -103,27 +103,27 @@ def interactive_Menu():
                 match chose_vis_short:
                     case "1":
                         Graph.GraphVisualizer.Visualizer()
-                        
+                        Returnto_main_menu.Return_to_main_menu()
                         
                     case "2":
                         choice = Graph.ChooseAlgoMenu.ChooseAlgo()
-                num_nodes = random.randint(6, 10)
-                G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
-                print(f"\nGenerated graph with {num_nodes} nodes.")
-                print(f"Node weights: {[G.nodes[i]['weight'] for i in G.nodes()]}")
-                print("Nodes:", list(G.nodes()))
-
-                start = int(input("Choose start node: "))
-                end = int(input("Choose end node: "))
-
-                length, path = Graph.ChooseAlgoMenu.run_algo(G, choice, start, end)
-                
-                print(f"Shortest path: {path}")
-                print(f"Total distance: {length}")
-                again  = input("run another graph? (y/n)").lower().strip()
-                if again == "n":
-                    break
-                
+                        num_nodes = random.randint(6, 10)
+                        G = Graph.ShortestPath.Random_Creat_Graph(num_nodes)
+                        print(f"\nGenerated graph with {num_nodes} nodes.")
+                        print(f"Node weights: {[G.nodes[i]['weight'] for i in G.nodes()]}")
+                        print("Nodes:", list(G.nodes()))
+        
+                        start = int(input("Choose start node: "))
+                        end = int(input("Choose end node: "))
+        
+                        length, path = Graph.ChooseAlgoMenu.run_algo(G, choice, start, end)
+                        
+                        print(f"Shortest path: {path}")
+                        print(f"Total distance: {length}")
+                        again  = input("run another graph? (y/n)").lower().strip()
+                        if again == "n":
+                            break
+                        
             case "4":
                 AES.main()
                 Returnto_main_menu.Return_to_main_menu()
