@@ -1,4 +1,3 @@
-Here’s a **refined, professional, GitHub-ready README** for your project. I’ve kept it clear, structured, and developer + user friendly, while keeping your original educational / research focus intact.
 
 ````markdown
 # DiscreteLab
