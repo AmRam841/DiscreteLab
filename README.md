@@ -1,195 +1,91 @@
+# 🧮 DiscreteLab
 
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![Built with Rich](https://img.shields.io/badge/built%20with-rich-green.svg)](https://github.com/Textualize/rich)
 
-# DiscreteLab
-
-**DiscreteLab** is a Python CLI-based educational lab for demonstrating core **discrete mathematics** and **security concepts**. It provides hands-on modules for logic, cryptography, graph theory, and file encryption. This project was developed as a university learning and demonstration tool.
-
----
-
-## 🚀 Features
-
-### 1. Truth Table Generator
-- Accepts variables (comma-separated) and a Python-style boolean formula.
-- Evaluates all combinations of variables and renders a formatted table in terminal output using Rich.
-
-### 2. RSA Educational Demo (Weak Parameters)
-- Generates intentionally weak RSA parameters or allows manual weak value entry.
-- Includes attack demonstrations:
-  - Small Prime Factorization
-  - Fermat Factorization
-  - Low Exponent Attack (`m^e < n` scenario)
-
-### 3. Graph Module
-- Visualizes sampled Facebook graph edge lists.
-- Generates random directed weighted graphs for shortest-path experimentation.
-- Algorithms supported: Dijkstra, Bellman-Ford, BFS-style shortest path, Floyd-Warshall.
-
-### 4. AES File Encryption/Decryption
-- AES-CBC file encryption with PBKDF2-derived key.
-- Reads/writes files in chunks (4096 bytes).
-- Prepends salt + IV to encrypted file for proper decryption.
+**DiscreteLab** is a comprehensive Python-based toolkit for Discrete Mathematics and Cryptography. It provides a terminal-based interface to visualize logical operations and cryptographic transformations with high clarity and color-coded feedback.
 
 ---
 
-## 📁 Project Structure
+## ✨ Features
 
-```text
+### 1. Dynamic Truth Table Generator
+* **Variable Support:** Handles any number of variables (e.g., $p, q, r, s, t$).
+* **Logical Evaluation:** Uses Python's engine to evaluate complex boolean expressions.
+* **Visual Output:** Uses the `Rich` library to render tables with 1/0 binary representation.
+
+### 2. Cryptographic Algorithms
+* **AES Implementation:** Modular AES logic located in `app/Cryptography_algos`.
+* **Extensible Design:** Easily add new algorithms like RSA or Diffie-Hellman by following the modular folder structure.
+
+---
+
+## 🚀 Installation
+
+1.  **Clone the Repository:**
+    ```bash
+    git clone [https://github.com/AmRam841/DiscreteLab.git](https://github.com/AmRam841/DiscreteLab.git)
+    cd DiscreteLab
+    ```
+
+2.  **Create a Virtual Environment:**
+    ```bash
+    python -m venv DiscreteLabVenv
+    source DiscreteLabVenv/bin/activate  # Linux/macOS
+    # .\DiscreteLabVenv\Scripts\activate  # Windows
+    ```
+
+3.  **Install Dependencies:**
+    ```bash
+    pip install rich
+    ```
+
+---
+
+## 📖 Usage
+
+Run the main application using:
+```bash
+python -m app
+
+Logical Operator Cheat Sheet
+When the script asks for a formula, use the following Python syntax:
+
+Operator	Math Symbol	Python Syntax
+AND	p∧q	p and q
+OR	p∨q	p or q
+XOR	p⊕q	p ^ q
+NOT	¬p	not p
+IF...THEN	p→q	not p or q
+IFF (Equals)	p↔q	p == q
+
+📂 Project Structure
+Plaintext
+
 DiscreteLab/
-├── LICENSE
-├── README.md
-├── docs/
-│   └── README.md
-└── app/
-    ├── main.py
-    ├── requirements.txt
-    ├── facebook_combined.txt
-    ├── logic/
-    │   └── TruthTable.py
-    ├── Cryptography_algos/
-    │   ├── AES.py
-    │   └── rsa.py
-    └── GraphModels/
-        ├── graph.py
-        ├── facebook_combined.txt
-        └── graph_with_menu.html
-````
+├── app/
+│   ├── __main__.py             # Entry point
+│   ├── Cryptography_algos/     # Crypto implementations
+│   │   ├── __init__.py
+│   │   └── AES.py
+│   └── logic_tools.py          # Logic and table generation utilities
+├── README.md                   # You are here
+└── requirements.txt            # Project dependencies
+🛠 Troubleshooting
+If you encounter an ImportError regarding Console, ensure your imports in all files look like this:
 
----
+Python
 
-## ⚙️ Requirements
+# CORRECT
+from rich.console import Console
 
-Install dependencies via pip:
+# INCORRECT
+# from rich import Console
+🤝 Contributing
+Contributions are welcome! If you'd like to add a new discrete math tool or a crypto algorithm:
 
-```bash
-pip install -r app/requirements.txt
-```
+Fork the repo.
 
-**Dependencies:**
+Create your feature branch.
 
-* typer
-* questionary
-* sympy
-* pycryptodome
-* networkx
-* pandas
-* pyvis
-
----
-
-## 🏃 Running the Application
-For people who downloaded the Pyinstaller Version :
-Go to the Directory of The downloaded File called __main__
-```bash     
-./__main__
-```
-From the repository root:
-
-```bash
-python app/main.py interactive-menu
-```
-
-> **Note:** Typer converts function names to CLI command names (e.g., `interactive_Menu` → `interactive-menu`).
-
----
-
-## 📌 Module Usage
-
-### Truth Table
-
-* Select option 1 in interactive menu.
-* Input variables (e.g., `q,r`) and a formula (e.g., `q or r`).
-* Output renders as a Rich table with `1` (True) / `0` (False).
-
-### RSA Educational Demo
-
-* Select option 2.
-* Choose weak parameter generation:
-
-  * `y` → random weak primes
-  * `n` → manual weak values
-* Optional attacks:
-
-  1. Small Prime Attack
-  2. Fermat Factorization
-  3. Low Exponent Attack
-
-### Graph Module
-
-* Select option 3.
-* Options:
-
-  1. Graph visualizer on sampled Facebook edges.
-  2. Shortest-path mode on random graph.
-* In shortest-path mode:
-
-  * Choose algorithm
-  * Enter start and end node IDs
-  * Receive path and distance
-
-### AES Encryption/Decryption
-
-* Select option 4.
-* Choose `e` (encrypt) or `d` (decrypt)
-* Enter password
-* Select input file (via questionary path picker)
-* Provide output filename
-
----
-
-## ⚠️ Security / Educational Notice
-
-* RSA module intentionally uses **weak values** for demonstration and attacks. **Not production-grade cryptography.**
-* AES uses **CBC + PBKDF2**; password correctness and file integrity are required.
-* Truth table evaluation uses `eval` — do **not** input untrusted formulas.
-
----
-
-## 📝 Known Caveats
-
-* Some menu or variable names contain minor typos.
-* Graph visualizer requires `facebook_combined.txt` in working directory.
-* Floyd-Warshall path reconstruction may need custom handling depending on NetworkX version.
-* Input validation and error handling can be expanded.
-
----
-
-## 📚 License
-
-This project is licensed under **Apache License 2.0** — see [LICENSE](LICENSE).
-
----
-
-## 🔧 For Developers / Contributors
-
-* Core modules are located under `app/`:
-
-  * `logic/TruthTable.py`
-  * `Cryptography_algos/rsa.py` and `AES.py`
-  * `GraphModels/graph.py`
-* CLI orchestration: `app/main.py` using Typer + Rich.
-* Graph visualizations use PyVis + NetworkX.
-* RSA demo demonstrates:
-
-  * Weak prime generation
-  * Small exponent attacks
-  * Fermat factorization
-
----
-
-## 💡 Recommendations / Improvements
-
-1. Replace `eval` with a safe logic parser.
-2. Add input validation for all numeric/CLI inputs.
-3. Standardize naming and menu labels.
-4. Add unit tests for:
-
-   * Truth tables
-   * RSA attack functions
-   * AES round-trip encryption/decryption
-   * Graph algorithms
-5. Add reproducibility flags (fixed random seeds).
-6. Separate CLI from core logic for easier testing.
-
-```
-
-
+Submit a Pull Request.

@@ -8,13 +8,18 @@ import sys
 import random
 from Cryptography_algos.AES import get_path_questionary
 from Cryptography_algos.AES import Write_file_name
+from rich.console import Console
+console = Console() 
 class Graph:
+    
+    
     
     class GraphVisualizer:
         
         def Visualizer():
             # get qustionary to retive the named Dataset 
             #data Loading 
+            console.print("[bold] Enter any valid data set , a Sample one is on the github page [/bold]")
             dataset_file = get_path_questionary()
             data = pd.read_csv(dataset_file , sep=" " , header=None)
             data.columns =  ["person1" , "person2"]
@@ -38,6 +43,7 @@ class Graph:
             net.show_buttons(filter_="physics")
             net.add_nodes(nodes)
             net.add_edges(edges)
+            console.print("[bold] The name extention should end in .html then the file would be Outputed to Directory , click on it , it will open a broswer , insure internet conectvity (for Some Cdn's)[/bold]")
             Name_file = Write_file_name()
             
             net.show(Name_file)

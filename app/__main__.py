@@ -10,7 +10,7 @@ from GraphModels.graph import Graph
 import random
 import sys
 import os
-
+from logic import help_logic
 
 
 #class Main_Menu:
@@ -45,8 +45,9 @@ def interactive_Menu():
                 # logic_var  = typer.prompt("Enter Your Logic vals ")
                 # logic_exprstion = typer.prompt("Enter logical expresion")
                 # Truth_table(logic_var , logic_exprstion)
+                help_logic.show_help()
                 Truth_table()
-                console.print("[bold] for q -> r statement  : Do this not q or r [/bold]")
+                
                 Returnto_main_menu.Return_to_main_menu()
            
            

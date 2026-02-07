@@ -35,8 +35,8 @@ def Truth_table():
                 print(f"err evaluting formula : {e}")
                 return
         
-        row_values = [ '1' if v else '0' for v in values ]
-        result_str = '1' if result else '0'
+        row_values = [ '[bold green]1[/bold green]' if v else '[bold red]0[/bold red]' for v in values ]
+        result_str = '[bold green]1[/bold green]' if result else '[bold red]0[/bold red]'
         table.add_row(*row_values, result_str)
 
         

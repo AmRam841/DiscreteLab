@@ -5,7 +5,7 @@ from Crypto.Util.Padding import pad,unpad
 import os
 import base64
 import questionary
-from rich import Console
+from rich.console import Console
 #from ..MainMenu.main import interactive_Menu
 
 console = Console()
