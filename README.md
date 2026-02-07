@@ -1,5 +1,5 @@
 
-````markdown
+
 # DiscreteLab
 
 **DiscreteLab** is a Python CLI-based educational lab for demonstrating core **discrete mathematics** and **security concepts**. It provides hands-on modules for logic, cryptography, graph theory, and file encryption. This project was developed as a university learning and demonstration tool.
@@ -77,7 +77,11 @@ pip install -r app/requirements.txt
 ---
 
 ## 🏃 Running the Application
-
+For people who downloaded the Pyinstaller Version :
+Go to the Directory of The downloaded File called __main__
+```bash     
+./__main__
+```
 From the repository root:
 
 ```bash
