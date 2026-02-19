@@ -1,0 +1,41 @@
+[project]
+name = "discretelab"
+version = "0.1.0"
+description = "A toolkit for exploring discrete mathematics concepts."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [
+    { name = "Amirmohammad Ramezani" }
+]
+license = { text = "MIT" }
+
+dependencies = [
+    "questionary",
+    "sympy",
+    "typer[all]>=0.9.0",
+    "rich>=13.7.0",
+    "pycryptodome",
+]
+
+[project.optional-dependencies]
+visual = [
+    "networkx",
+    "pandas",
+    "pyvis",
+]
+dev = [
+    "pytest>=8.0.0",
+    "pyinstaller",
+]
+
+[project.scripts]
+discretelab = "discretelab.main:app"
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["app*"]
+exclude = ["DiscreteLabVenv*"]
+where = ["."]

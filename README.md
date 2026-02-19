@@ -44,6 +44,25 @@
 
 ## 📖 Usage
 
+
+if you Downloaded the release :
+for Windows just click on it 
+for mac/linux , just running this 
+```
+./__main__
+```
+will do the job 
+
+
+
+
+
+
+
+
+
+
+
 Run the main application using:
 ```bash
 python -m app
