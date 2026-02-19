@@ -37,7 +37,9 @@
 
 3.  **Install Dependencies:**
     ```bash
-    pip install rich
+    pip install -e .
+    or
+    pip install -e .[project]
     ```
 
 ---
@@ -64,6 +66,7 @@ will do the job
 
 
 Run the main application using:
+i recommend you run it as a task in vscode but you can do the following too
 ```bash
 python -m app
 
@@ -81,15 +84,6 @@ IFF (Equals)	p↔q	p == q
 📂 Project Structure
 Plaintext
 
-DiscreteLab/
-├── app/
-│   ├── __main__.py             # Entry point
-│   ├── Cryptography_algos/     # Crypto implementations
-│   │   ├── __init__.py
-│   │   └── AES.py
-│   └── logic_tools.py          # Logic and table generation utilities
-├── README.md                   # You are here
-└── requirements.txt            # Project dependencies
 🛠 Troubleshooting
 If you encounter an ImportError regarding Console, ensure your imports in all files look like this:
 
